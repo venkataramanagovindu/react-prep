@@ -1,7 +1,8 @@
+import React from "react";
 import { useRef } from "react";
 
 export default function TestuseRef() {
-    const inputRef = useRef();
+    const inputRef = useRef<HTMLInputElement>(null);
 
     return (
         <>
@@ -13,7 +14,7 @@ export default function TestuseRef() {
             />
             <button onClick={() => {
                 if (inputRef.current) {
-                    console.log(inputRef.current);
+                    console.log(inputRef.current.value);
                 }
             }}>
                 Log Input Value

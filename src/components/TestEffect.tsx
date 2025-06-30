@@ -1,18 +1,17 @@
+import React from "react";
 import { useEffect, useState } from "react";
 
 export default function TestEffect() {
-//   console.log("TestEffect component rendered");
+  const [count, setCount] = useState<number>(0);
 
-  const [count, setCount] = useState(0);
-
-  const returnEffect = useEffect(() => {
+  useEffect(() => {
     console.log("useEffect in TestEffect component executed");
     
     // Cleanup function
     return () => {
       console.log("Cleanup in TestEffect component executed");
     };
-  }, [count]); // Empty dependency array means this effect runs once after the initial render
+  }, [count]); // Dependency array means this effect runs when 'count' changes
 
   return (
     <div>

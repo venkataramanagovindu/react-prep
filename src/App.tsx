@@ -5,8 +5,7 @@ import { Parent } from './components/Parent';
 import TestEffect from './components/TestEffect';
 import GrandParent from './components/LearnContext/GrandParent';
 import { AnotherGrandParent } from './components/LearnContext/AnotherGrandParent';
-import { BrowserRouter, Link, Route, Router, Routes } from 'react-router-dom';
-import { ShowPosts } from './components/Posts/ShowPosts';
+import { Link} from 'react-router-dom';
 
 const App: React.FC = () => {
   return (
@@ -29,7 +28,9 @@ const App: React.FC = () => {
       <AnotherGrandParent />
 
       <div>
+      {/* Add any additional content or comments here */}
 
+      {/* // This is the old way using React Router
       <Routes>
         <Route
           path="/posts"
@@ -40,7 +41,7 @@ const App: React.FC = () => {
           }
         />
         <Route path="*" element={<h2>404 Not Found</h2>} />
-      </Routes>
+      </Routes> */}
 
       </div>
     </div>

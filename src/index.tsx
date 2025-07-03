@@ -1,18 +1,38 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ErrorBoundary } from "react-error-boundary";
+
+const ShowPosts = React.lazy(() => import('./components/Posts/ShowPosts'));
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 
+const routes = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    errorElement: <div>Something went wrong</div>,
+  },
+  {
+    path: '/posts',
+    element: (
+      <Suspense fallback={<div>Loading Posts...</div>}>
+        <ShowPosts />
+      </Suspense>
+    ),
+  }
+]);
+
 root.render(
   <React.StrictMode>
-          <BrowserRouter>
-          
-    <App />
-          </BrowserRouter>
+    <ErrorBoundary fallback={<div>Something went wrong</div>}>
+          {/* <BrowserRouter> */}
+          <RouterProvider router={routes} />
+          {/* </BrowserRouter> */}
+    </ErrorBoundary>
   </React.StrictMode>
 );
 

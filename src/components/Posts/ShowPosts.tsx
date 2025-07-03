@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Posts } from "./Posts";
 
-export const ShowPosts: React.FC = () => {
+ const ShowPosts: React.FC = () => {
   return (
     <div>
       <h2>Show Posts Component</h2>
@@ -11,3 +11,5 @@ export const ShowPosts: React.FC = () => {
     </div>
   );
 };
+
+export default ShowPosts;

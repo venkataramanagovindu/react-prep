@@ -9,6 +9,7 @@ export const Posts: React.FC = () => {
   const posts = resource.read(); // Suspends here until resolved
 
   return (
+
     <div>
       <h2>Posts from JSONPlaceholder:</h2>
       <ul>

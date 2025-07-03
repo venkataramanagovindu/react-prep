@@ -6,8 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ErrorBoundary } from "react-error-boundary";
 import { LearnUseMemo } from './components/LearnUseMemo/LearnuseMemo';
+import { Provider } from 'react-redux';
+import { store } from './state/store';
 
 const ShowPosts = React.lazy(() => import('./components/Posts/ShowPosts'));
+const Counter = React.lazy(() => import('./components/redux-toolkit/counter'));
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 
@@ -28,16 +31,30 @@ const routes = createBrowserRouter([
   {
     path: '/learn-usememo',
     element: <LearnUseMemo />,
+  },
+  {
+    path: '/redux-toolkit',
+    element: (
+      <Suspense fallback={<div>Loading Redux Toolkit Counter...</div>}>
+        <Counter />
+      </Suspense>
+    ),
+  },
+  {
   }
 ]);
 
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
+    {/* <BrowserRouter> */}
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
           {/* <BrowserRouter> */}
           <RouterProvider router={routes} />
           {/* </BrowserRouter> */}
     </ErrorBoundary>
+    </Provider>
+
   </React.StrictMode>
 );
 

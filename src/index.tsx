@@ -6,10 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ErrorBoundary } from "react-error-boundary";
 import { LearnUseMemo } from './components/LearnUseMemo/LearnuseMemo';
+import { createStore } from 'redux';
+import rootReducer from './reducers/RoorReducer';
+import { composeWithDevTools } from '@redux-devtools/extension/lib/types/logOnly';
 
 const ShowPosts = React.lazy(() => import('./components/Posts/ShowPosts'));
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
+
+const store = createStore(rootReducer);
 
 const routes = createBrowserRouter([
   {

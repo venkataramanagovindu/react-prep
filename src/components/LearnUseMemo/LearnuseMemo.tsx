@@ -15,7 +15,7 @@ export const LearnUseMemo: React.FC = () => {
 //   }
     const isEven = React.useMemo(() => {
         var i = 0;
-        while (i < 1000000000) {i++}
+        // while (i < 1000000000) {i++}
         console.log("Calculating isEven");
         return count % 2 === 0;
     }, [count]);

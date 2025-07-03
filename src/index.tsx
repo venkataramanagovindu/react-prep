@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ErrorBoundary } from "react-error-boundary";
+import { LearnUseMemo } from './components/LearnUseMemo/LearnuseMemo';
 
 const ShowPosts = React.lazy(() => import('./components/Posts/ShowPosts'));
 
@@ -23,6 +24,10 @@ const routes = createBrowserRouter([
         <ShowPosts />
       </Suspense>
     ),
+  },
+  {
+    path: '/learn-usememo',
+    element: <LearnUseMemo />,
   }
 ]);
 

@@ -14,6 +14,7 @@ const App: React.FC = () => {
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/posts">Posts</Link>
+        <Link to="/learn-usememo">Learn useMemo</Link>
       </nav>
       <header className="App-header">
         This is a simple React application demonstrating component structure.

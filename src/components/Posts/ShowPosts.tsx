@@ -5,9 +5,9 @@ import { Posts } from "./Posts";
   return (
     <div>
       <h2>Show Posts Component</h2>
-      <Suspense fallback={<div>Loading posts...</div>}>
+      {/* <Suspense fallback={<div>Loading posts from component...</div>}> */}
         <Posts />
-      </Suspense>
+      {/* </Suspense> */}
     </div>
   );
 };

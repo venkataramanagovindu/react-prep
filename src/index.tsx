@@ -8,6 +8,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { LearnUseMemo } from './components/LearnUseMemo/LearnuseMemo';
 import { Provider } from 'react-redux';
 import { store } from './state/store';
+import { Users } from './components/Users/Users';
 
 const ShowPosts = React.lazy(() => import('./components/Posts/ShowPosts'));
 const Counter = React.lazy(() => import('./components/redux-toolkit/counter'));
@@ -41,11 +42,13 @@ const routes = createBrowserRouter([
     ),
   },
   {
+    path: '/users',
+    element: <Users />,
   }
 ]);
 
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
     {/* <BrowserRouter> */}
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
@@ -55,7 +58,7 @@ root.render(
     </ErrorBoundary>
     </Provider>
 
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

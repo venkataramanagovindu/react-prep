@@ -16,6 +16,7 @@ const App: React.FC = () => {
         <Link to="/posts">Posts</Link>
         <Link to="/learn-usememo">Learn useMemo</Link>
         <Link to="/redux-toolkit">Redux Toolkit Counter</Link>
+        <Link to="/users">Users</Link>
       </nav>
       <header className="App-header">
         This is a simple React application demonstrating component structure.

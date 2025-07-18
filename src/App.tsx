@@ -5,7 +5,7 @@ import { Parent } from './components/Parent';
 import TestEffect from './components/TestEffect';
 import GrandParent from './components/LearnContext/GrandParent';
 import { AnotherGrandParent } from './components/LearnContext/AnotherGrandParent';
-import { Link} from 'react-router-dom';
+import { Link, Outlet} from 'react-router-dom';
 
 const App: React.FC = () => {
   return (
@@ -17,6 +17,7 @@ const App: React.FC = () => {
         <Link to="/learn-usememo">Learn useMemo</Link>
         <Link to="/redux-toolkit">Redux Toolkit Counter</Link>
         <Link to="/users">Users</Link>
+        <Link to="/create-user">Create User</Link>
       </nav>
       <header className="App-header">
         This is a simple React application demonstrating component structure.
@@ -45,7 +46,7 @@ const App: React.FC = () => {
         />
         <Route path="*" element={<h2>404 Not Found</h2>} />
       </Routes> */}
-
+      <Outlet />
       </div>
     </div>
   );

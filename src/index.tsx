@@ -9,43 +9,95 @@ import { LearnUseMemo } from './components/LearnUseMemo/LearnuseMemo';
 import { Provider } from 'react-redux';
 import { store } from './state/store';
 import { Users } from './components/Users/Users';
+import { CreateUser } from './components/Users/CreateUser';
 
 const ShowPosts = React.lazy(() => import('./components/Posts/ShowPosts'));
 const Counter = React.lazy(() => import('./components/redux-toolkit/counter'));
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 
-const routes = createBrowserRouter([
+// export const routes = createBrowserRouter([
+//   {
+//     path: '/',
+//     element: <App />,
+//     errorElement: <div>Something went wrong</div>,
+//   },
+//   {
+//     path: '/posts',
+//     element: (
+//       <Suspense fallback={<div>Loading Posts...</div>}>
+//         <ShowPosts />
+//       </Suspense>
+//     ),
+//   },
+//   {
+//     path: '/learn-usememo',
+//     element: <LearnUseMemo />,
+//   },
+//   {
+//     path: '/redux-toolkit',
+//     element: (
+//       <Suspense fallback={<div>Loading Redux Toolkit Counter...</div>}>
+//         <Counter />
+//       </Suspense>
+//     ),
+//   },
+//   {
+//     path: '/users',
+//     element: <Users />,
+//   },
+//   { 
+//     path: '/create-user',
+//     element: <CreateUser />,
+//   },
+// ]);
+
+export const routes = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     errorElement: <div>Something went wrong</div>,
+    children: [
+      {
+        index: true, // for "/"
+        element: <div>Welcome to the Home Page</div>,
+      },
+      {
+        path: 'posts',
+        element: (
+          <Suspense fallback={<div>Loading Posts...</div>}>
+            <ShowPosts />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'learn-usememo',
+        element: <LearnUseMemo />,
+      },
+      {
+        path: 'redux-toolkit',
+        element: (
+          <Suspense fallback={<div>Loading Redux Toolkit Counter...</div>}>
+            <Counter />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'users',
+        element: <Users />,
+      },
+      {
+        path: 'create-user',
+        element: <CreateUser />,
+      },
+      {
+        path: '*',
+        element: <div>404 - Page not found</div>,
+      },
+    ],
   },
-  {
-    path: '/posts',
-    element: (
-      <Suspense fallback={<div>Loading Posts...</div>}>
-        <ShowPosts />
-      </Suspense>
-    ),
-  },
-  {
-    path: '/learn-usememo',
-    element: <LearnUseMemo />,
-  },
-  {
-    path: '/redux-toolkit',
-    element: (
-      <Suspense fallback={<div>Loading Redux Toolkit Counter...</div>}>
-        <Counter />
-      </Suspense>
-    ),
-  },
-  {
-    path: '/users',
-    element: <Users />,
-  }
 ]);
+
 
 root.render(
   // <React.StrictMode>

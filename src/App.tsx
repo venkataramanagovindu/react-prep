@@ -6,8 +6,33 @@ import TestEffect from './components/TestEffect';
 import GrandParent from './components/LearnContext/GrandParent';
 import { AnotherGrandParent } from './components/LearnContext/AnotherGrandParent';
 import { Link, Outlet} from 'react-router-dom';
+import { useLocation } from 'react-router'
 
 const App: React.FC = () => {
+  let location = useLocation();
+
+  React.useEffect(() => {
+    console.log(`Page changed to: ${location.pathname}`);
+  }, [location]);
+
+  const renderExtraContent = () => {
+    if (location.pathname !== '/') return null;
+
+    console.log("Rendering extra content for path:", location.pathname);
+    return (
+      <>
+        <Parent />
+        <TestEffect />
+        <TestuseRef />
+
+        <h1>Context Example</h1>
+
+        <GrandParent />
+        <AnotherGrandParent />
+      </>
+    );
+  };
+
   return (
     <div>
       <nav style={{ display: 'flex', gap: '10px' }}>
@@ -20,16 +45,17 @@ const App: React.FC = () => {
         <Link to="/create-user">Create User</Link>
       </nav>
       <header className="App-header">
-        This is a simple React application demonstrating component structure.
+        {/* This is a simple React application demonstrating component structure. */}
       </header>
-      <Parent />
+
+      {/* <Parent />
       <TestEffect />
       <TestuseRef />
 
       <h1>Context Example</h1>
 
       <GrandParent />
-      <AnotherGrandParent />
+      <AnotherGrandParent /> */}
 
       <div>
       {/* Add any additional content or comments here */}
@@ -46,8 +72,11 @@ const App: React.FC = () => {
         />
         <Route path="*" element={<h2>404 Not Found</h2>} />
       </Routes> */}
-      <Outlet />
       </div>
+
+      {renderExtraContent()}
+
+      <Outlet />
     </div>
   );
 };

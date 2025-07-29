@@ -10,6 +10,8 @@ import { Provider } from 'react-redux';
 import { store } from './state/store';
 import { Users } from './components/Users/Users';
 import { CreateUser } from './components/Users/CreateUser';
+import { LoaderProvider } from './components/Loader/LoaderContextProvider';
+import { Loader } from './components/Loader/Loader';
 
 const ShowPosts = React.lazy(() => import('./components/Posts/ShowPosts'));
 const Counter = React.lazy(() => import('./components/redux-toolkit/counter'));
@@ -102,12 +104,16 @@ export const routes = createBrowserRouter([
 root.render(
   // <React.StrictMode>
     <Provider store={store}>
+      <LoaderProvider>
+        <Loader />
     {/* <BrowserRouter> */}
-    <ErrorBoundary fallback={<div>Something went wrong</div>}>
+    <ErrorBoundary fallback={<div>Something went wrong Error Boundry</div>}>
           {/* <BrowserRouter> */}
           <RouterProvider router={routes} />
           {/* </BrowserRouter> */}
     </ErrorBoundary>
+    </LoaderProvider>
+
     </Provider>
 
   // </React.StrictMode>

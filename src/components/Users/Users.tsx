@@ -1,17 +1,13 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { getUsers } from "./UserService";
 import Button from '@mui/material/Button';
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import { User } from "./User";
+import { LoaderContext, useLoader } from "../Loader/LoaderContext";
 
 export const Users = () => {
   console.log("Users component rendered");
-
-//   const rows: GridRowsProp = [
-//     { id: 1, name: 'Data Grid', description: 'the Community version' },
-//     { id: 2, name: 'Data Grid Pro', description: 'the Pro version' },
-//     { id: 3, name: 'Data Grid Premium', description: 'the Premium version' },
-//   ];
+  const loader = useLoader()
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'Id', width: 200 },
@@ -24,13 +20,16 @@ export const Users = () => {
   const [users, setUsers] = React.useState<User[]>([]);
 
   useEffect(() => {
-
+    loader.start('Fetching users...');
+    console.log("Fetching users from API...");
     getUsers().then(usersData => {
       console.log("Users from API:", usersData);
       setUsers(usersData);
       
+      loader.stop()
     }).catch(error => {
       console.error("Error fetching users:", error);
+      loader.stop();
     });         
   }, []);
 
@@ -40,7 +39,12 @@ export const Users = () => {
       <p>This is the Users component.</p>
 
       <div>
+    <Suspense fallback={<div>Loading users...</div>}>
+      {/* This is where you can add any additional content or comments */}
+      <h2>Users List</h2>
+      <p>Here is a list of users fetched from the API:</p>
       <DataGrid rows={users} columns={columns} />
+    </Suspense>
     </div>
 
       <Button variant="outlined">Hello world</Button>
